@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 
 const connectDB = require('./config/database')
 
+const routes = require('./routes/todos')
+
 //Use .env file in config folder
 require('dotenv').config({ path: './config/.env' })
 
@@ -14,8 +16,6 @@ connectDB()
 
 const PORT = process.env.port || 5000
 
-app.get('/test', (req, res, next) => {
-  res.json({ msg: 'welcome to the api' })
-})
+app.use(routes)
 
 app.listen(PORT, () => console.log(`Listening on: ${PORT}`))

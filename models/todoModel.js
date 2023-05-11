@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const todoSchema = new mongoose.Schema({
   text: {
-    type: string,
+    type: String,
     require: true,
   },
   isCompleted: {
@@ -11,7 +11,7 @@ const todoSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.Model('Todo', todoSchema)
+module.exports = mongoose.model('Todo', todoSchema)
 
 // const todoSchema = new mongoose.Schema({
 //   text: {

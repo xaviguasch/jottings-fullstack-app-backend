@@ -65,3 +65,21 @@ module.exports.updateTodo = async (req, res) => {
     })
   }
 }
+
+module.exports.deleteTodo = async (req, res) => {
+  const { id } = req.params
+
+  try {
+    await TodoModel.findByIdAndDelete(id)
+
+    res.status(201).json({
+      status: 'success',
+      data: null,
+    })
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err,
+    })
+  }
+}

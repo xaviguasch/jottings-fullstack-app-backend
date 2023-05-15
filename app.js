@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const connectDB = require('./config/database')
 
@@ -8,9 +9,9 @@ const routes = require('./routes/todos')
 //Use .env file in config folder
 require('dotenv').config({ path: './config/.env' })
 
-const mongoConnect = require('./config/database')
-
 const app = express()
+
+app.use(express.json())
 
 connectDB()
 

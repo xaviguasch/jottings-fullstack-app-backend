@@ -29,18 +29,28 @@ module.exports.saveTodo = async (req, res) => {
 module.exports.updateTodo = async (req, res) => {
   const { id } = req.params
 
-  const body = req.body
+  // const body = req.body
 
-  const todo = {
-    id: body.id,
-    text: body.text,
-    isCompleted: body.isCompleted,
-  }
+  // const todo = {
+  //   id: body.id,
+  //   text: body.text,
+  //   isCompleted: body.isCompleted,
+  // }
 
   try {
-    const updatedTodo = await TodoModel.findByIdAndUpdate(req.params.id, todo, {
-      new: true,
-    })
+    const oldTodo = await TodoModel.findById(id)
+
+    const updatedTodo = await TodoModel.findByIdAndUpdate(
+      id,
+      { isCompleted: !oldTodo.isCompleted },
+      {
+        new: true,
+      }
+    )
+
+    // const updatedTodo = await TodoModel.findByIdAndUpdate(req.params.id, todo, {
+    //   new: true,
+    // })
 
     res.status(201).json({
       status: 'success',

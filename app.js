@@ -12,6 +12,7 @@ require('dotenv').config({ path: './config/.env' })
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 connectDB()
 

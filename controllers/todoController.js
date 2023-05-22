@@ -3,19 +3,7 @@ const TodoModel = require('../models/todoModel')
 module.exports.getTodos = async (req, res) => {
   const todo = await TodoModel.find()
 
-  try {
-    res.status(201).json({
-      status: 'success',
-      data: {
-        todos: todos,
-      },
-    })
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err,
-    })
-  }
+  res.send(todo)
 }
 
 module.exports.saveTodo = async (req, res) => {
